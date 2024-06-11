@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<artifactId>demo2</artifactId>
-	<groupId>com.example.demo2</groupId>
-	<version>1.0-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.3.3.RELEASE</version>
+		<relativePath/>
+	</parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<docker.image.prefix>alibaba-sample</docker.image.prefix>
-		<spring.boot.version>1.3.3.RELEASE</spring.boot.version>
-	</properties>
+	<groupId>com.example.demo</groupId>
+	<artifactId>sample-spring-alibaba</artifactId>
+	<version>1.0-SNAPSHOT</version>
 
+	<!-- 换成阿里云maven源加速 -->
 	<repositories>
 		<repository>
 			<id>aliyun-central</id>
@@ -35,22 +36,10 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.3.RELEASE</version>
-		<relativePath/>
-	</parent>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

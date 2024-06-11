@@ -13,6 +13,11 @@
 	<artifactId>sample-spring-alibaba</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.boot.version>1.3.3.RELEASE</spring.boot.version>
+	</properties>
+
 	<!-- 换成阿里云maven源加速 -->
 	<repositories>
 		<repository>
@@ -45,6 +50,10 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<!-- Build an executable JAR -->
 				<groupId>org.apache.maven.plugins</groupId>

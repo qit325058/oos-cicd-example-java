@@ -1,100 +1,362 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的告白</title>
+    <title>Special Happiness Zone for My Love</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+        }
+
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffebf0;
-            font-family: Arial, sans-serif;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .heart {
-            color: red;
-            font-size: 50px;
-            animation: heartbeat 1s infinite alternate;
-        }
-
-        @keyframes heartbeat {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.3);
-            }
-        }
-
-        .message {
-            font-size: 24px;
-            color: #d63384;
+        header {
             text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff6b9e;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #888;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-title {
+            color: #ff6b9e;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .game-title i {
+            margin-right: 10px;
+            font-size: 1.8rem;
         }
 
         .btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff4d6d;
-            border: none;
+            background: linear-gradient(45deg, #ff6b9e, #ff8e53);
             color: white;
-            font-size: 18px;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             cursor: pointer;
-            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(255,107,158,0.4);
+            transition: all 0.3s;
         }
 
-        .hidden {
-            display: none;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,158,0.6);
         }
 
-        .floating-heart {
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Heart animation effect */
+        .heart {
             position: absolute;
-            font-size: 30px;
-            color: red;
-            animation: floatUp 4s infinite linear;
+            pointer-events: none;
+            font-size: 20px;
+            color: #ff6b9e;
+            animation: float 4s linear forwards;
+            z-index: 100;
         }
 
-        @keyframes floatUp {
-            from {
-                transform: translateY(100vh) scale(0.8);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-10vh) scale(1.2);
-                opacity: 0;
-            }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Compliment effect */
+        .compliment {
+            position: fixed;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            color: #ff6b9e;
+            font-weight: bold;
+            z-index: 200;
+            pointer-events: none;
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-50px); }
+        }
+
+        /* Mini-game specific styles */
+        #fortuneResult, #loveScore {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: #ff6b9e;
+            font-weight: bold;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #kissButton {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b9e, #ff8e53);
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 10px 30px rgba(255,107,158,0.4);
+            transition: all 0.3s;
+        }
+
+        #kissButton:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .game-title { font-size: 1.2rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-<div class="heart">❤️</div>
-<p class="message">I have something to say to you~</p>
-<button class="btn" onclick="showLove()">Click me</button>
-<p class="message hidden" id="loveMessage">Have you finished your exercise? I want to see your chest muscles~！❤️</p>
+<header>
+    <h1>❤️ Special Happiness Zone ❤️</h1>
+    <p class="subtitle">Created exclusively for the most wonderful person in the world</p>
+</header>
+
+<div class="container">
+    <!-- Daily Fortune -->
+    <div class="game-card">
+        <div class="game-title">
+            <i class="fas fa-star"></i>
+            <span>Daily Fortune</span>
+        </div>
+        <p>Click the button to see what good luck awaits you today~</p>
+        <button class="btn" id="fortuneBtn">Check Today's Fortune</button>
+        <div id="fortuneResult"></div>
+    </div>
+
+    <!-- Love Meter -->
+    <div class="game-card">
+        <div class="game-title">
+            <i class="fas fa-heart"></i>
+            <span>Love Meter</span>
+        </div>
+        <p>Measure how much you love me and how much I love you~</p>
+        <button class="btn" id="loveTestBtn">Test Love Level</button>
+        <div id="loveScore"></div>
+    </div>
+
+    <!-- Kiss Button -->
+    <div class="game-card">
+        <div class="game-title">
+            <i class="fas fa-kiss-wink-heart"></i>
+            <span>Kiss Button</span>
+        </div>
+        <p>Click the button to send me a kiss~</p>
+        <div id="kissButton">😘 Kiss</div>
+    </div>
+
+    <!-- Compliment Button -->
+    <div class="game-card">
+        <div class="game-title">
+            <i class="fas fa-comment-dots"></i>
+            <span>Compliment Button</span>
+        </div>
+        <p>Click the button to receive today's compliment~</p>
+        <button class="btn" id="complimentBtn">Compliment Me</button>
+    </div>
+
+    <!-- Surprise Button -->
+    <div class="game-card">
+        <div class="game-title">
+            <i class="fas fa-gift"></i>
+            <span>Mystery Surprise</span>
+        </div>
+        <p>Click the button to reveal a special surprise~</p>
+        <button class="btn" id="surpriseBtn">Open Surprise</button>
+    </div>
+</div>
+
+<footer>
+    <p>Created on <span id="today"></span> · With love from me</p>
+</footer>
 
 <script>
-    function showLove() {
-        document.getElementById('loveMessage').classList.remove('hidden');
-        createFloatingHearts();
-    }
+    // Set date
+    document.getElementById('today').textContent = new Date().toLocaleDateString('en-US');
 
-    function createFloatingHearts() {
-        for (let i = 0; i < 10; i++) {
-            let heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
+    // Daily Fortune
+    const fortunes = [
+        "Today you'll have extraordinary luck!",
+        "Today you're the luckiest girl in the world!",
+        "A wonderful surprise awaits you today!",
+        "Your smile will captivate everyone today!",
+        "Today you'll receive special love and care!",
+        "You're the most beautiful being in the universe today!",
+        "Something good will happen today because I've been thinking about you!"
+    ];
+
+    document.getElementById('fortuneBtn').addEventListener('click', function() {
+        const result = document.getElementById('fortuneResult');
+        result.textContent = "🔮 Predicting...";
+
+        setTimeout(() => {
+            const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+            result.innerHTML = `✨ Your fortune:<br>${randomFortune}`;
+            createHearts(10);
+        }, 1000);
+    });
+
+    // Love Meter
+    document.getElementById('loveTestBtn').addEventListener('click', function() {
+        const result = document.getElementById('loveScore');
+        result.textContent = "💖 Calculating...";
+
+        setTimeout(() => {
+            const yourLove = 90 + Math.floor(Math.random() * 11); // 90-100
+            const myLove = 100;
+            result.innerHTML = `
+                    Your love for me: ${yourLove}%<br>
+                    My love for you: ${myLove}%<br>
+                    Conclusion: I will always love you more than you love me!
+                `;
+            createHearts(15);
+        }, 1500);
+    });
+
+    // Kiss Button
+    document.getElementById('kissButton').addEventListener('click', function() {
+        createHearts(20);
+        showCompliment("😘 Mwah! Kiss received~");
+    });
+
+    // Compliment Button
+    const compliments = [
+        "You look absolutely stunning today!",
+        "You're the most adorable person in the world!",
+        "Your smile melts my heart!",
+        "Every second with you is pure happiness!",
+        "How can you be so perfect?!",
+        "I must have saved the galaxy in a past life to deserve you!",
+        "You're the reason I wake up happy every morning!",
+        "Your eyes contain the entire universe!"
+    ];
+
+    document.getElementById('complimentBtn').addEventListener('click', function() {
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        showCompliment(randomCompliment);
+        createHearts(5);
+    });
+
+    // Surprise Button
+    document.getElementById('surpriseBtn').addEventListener('click', function() {
+        createHearts(30);
+        showCompliment("🎉 The surprise is... I love you more than yesterday!");
+
+        setTimeout(() => {
+            alert("💝 The real surprise is... I'll love you forever!");
+        }, 1000);
+    });
+
+    // Create heart effects
+    function createHearts(count) {
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'][Math.floor(Math.random() * 9)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, i * 100);
         }
     }
+
+    // Show compliment text
+    function showCompliment(text) {
+        const compliment = document.createElement('div');
+        compliment.className = 'compliment';
+        compliment.textContent = text;
+        compliment.style.left = (Math.random() * 60 + 20) + 'vw';
+        compliment.style.top = (Math.random() * 50 + 25) + 'vh';
+
+        document.body.appendChild(compliment);
+
+        setTimeout(() => {
+            compliment.remove();
+        }, 2000);
+    }
+
+    // Page load animation
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            createHearts(10);
+            showCompliment("Welcome my love~");
+        }, 500);
+    });
 </script>
 </body>
 </html>

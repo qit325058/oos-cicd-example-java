@@ -305,14 +305,10 @@
         createHearts(5);
     });
 
-    // Surprise Button
+    // Surprise Button (without popup)
     document.getElementById('surpriseBtn').addEventListener('click', function() {
         createHearts(30);
         showCompliment("🎉 The surprise is... I love you more than yesterday!");
-
-        setTimeout(() => {
-            alert("💝 The real surprise is... I'll love you forever!");
-        }, 1000);
     });
 
     // Create heart effects
